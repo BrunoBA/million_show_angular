@@ -28,9 +28,15 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "./node_modules/material-design-lite/material.min.css",
+              "./node_modules/material-design-icons/iconfont/material-icons.css",
+              "./node_modules/font-awesome/css/font-awesome.min.css"
             ],
-            "scripts": []
+            "scripts": [
+              "./node_modules/material-design-lite/material.min.js"
+            ]
           },
           "configurations": {
             "production": {
