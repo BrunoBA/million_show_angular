@@ -9,7 +9,7 @@ declare var Pusher: any;
 })
 export class UserCreateComponent implements OnInit {
 
-  userName: string = 'Bruno'
+  username: string = ''
 
   ngOnInit() {
     Pusher.logToConsole = true;
@@ -26,7 +26,7 @@ export class UserCreateComponent implements OnInit {
   }
 
   joinRoom(): void {
-    alert("Aaai papaai")
+    alert(this.username.trim())
   }
 
 }
