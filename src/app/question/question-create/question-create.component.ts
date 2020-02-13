@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { QuestionService } from 'src/app/services/question.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-question-create',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QuestionCreateComponent implements OnInit {
 
-  constructor() { }
+  constructor(private questionService: QuestionService, private router: Router) { }
 
-  ngOnInit() {
+  ngOnInit() { }
+
+  createQuestion(): void {
+    this.questionService.create().subscribe(response => {
+      this.router.navigate(['question', response.data])
+    })
   }
-
 }

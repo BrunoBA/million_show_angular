@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { UserService } from 'src/app/services/user.service';
+import { ActivatedRoute } from '@angular/router';
 
 declare var Pusher: any;
 
@@ -33,7 +34,7 @@ export class UserListComponent implements OnInit {
     'mdl-color--grey',
     'mdl-color--blue-grey'
   ]
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
     this.initPusherObserver()
@@ -55,7 +56,8 @@ export class UserListComponent implements OnInit {
   }
 
   private getAllUsers(): void {
-    this.userService.getAll().subscribe(
+    const questionId = this.activatedRoute.snapshot.params.questionId
+    this.userService.getAll(questionId).subscribe(
       response => {
         this.users = response.data
       },

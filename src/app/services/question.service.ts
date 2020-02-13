@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { environment } from 'src/environments/environment';
+import { Response } from './response';
 
 const URL = environment.URL_API
 
@@ -16,6 +17,6 @@ export class QuestionService {
   constructor(private http: HttpClient) { }
 
   create () {
-    return this.http.post<any>(this.BASE_URL, {})
+    return this.http.post<Response<string>>(this.BASE_URL, {})
   }
 }
