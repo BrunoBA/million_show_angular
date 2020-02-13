@@ -1,1 +1,33 @@
-<p>user-list works!</p>
+<div class="container-fluid">
+  <div class="d-flex justify-content-center">
+    <div class="demo-list-action mdl-list">
+      <div *ngFor="let user of users; index as i" class="mdl-list__item">
+        <span class="mdl-list__item-primary-content">
+          <span class="text-uppercase mdl-chip__contact mdl-color-text--white" [ngClass]="colors[i]">{{user[0]}}</span>
+          <span>{{user}}</span>
+        </span>
+        <span *ngIf="i == 0" class="mdl-list__item-secondary-action">
+          <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="list-checkbox-1">
+            <input type="checkbox" id="list-checkbox-1" class="mdl-checkbox__input" checked />
+          </label>
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <button class="mdl-button mdl-js-button  mdl-color--teal mdl-color-text--white mdl-js-ripple-effect">
+        <i class="material-icons">share</i>
+        Share
+      </button>
+    </div>
+  </div>
+  <div class="row mt-1">
+    <div class="col-md-12 text-center">
+      <button class="mdl-button mdl-js-button  mdl-color--blue mdl-color-text--white mdl-js-ripple-effect">
+        <i class="material-icons">play_arrow</i>
+        &nbsp;Start
+      </button>
+    </div>
+  </div>
+</div>
