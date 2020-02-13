@@ -1,17 +1,18 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { HttpClient, HttpHandler } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 declare var Pusher: any;
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
   userName: string = 'Bruno'
 
-
+  constructor(http: HttpClient) {
+    console.log(http)
+  }
 
   ngOnInit() {
     Pusher.logToConsole = true;
