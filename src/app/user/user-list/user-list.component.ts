@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
+import { UserService } from 'src/app/services/user.service';
+
+declare var Pusher: any;
+
 @Component({
   selector: 'app-user-list',
   templateUrl: './user-list.component.html',
@@ -7,7 +11,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserListComponent implements OnInit {
 
-  users: Array<string> = ['Bruno', 'Willborn', 'outronome']
+  users: Array<string>
   colors: Array<string> = [
     'mdl-color--red',
     'mdl-color--pink',
@@ -29,9 +33,37 @@ export class UserListComponent implements OnInit {
     'mdl-color--grey',
     'mdl-color--blue-grey'
   ]
-  constructor() { }
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
+    this.initPusherObserver()
+    this.getAllUsers()
+  }
+
+  private initPusherObserver(): void {
+    Pusher.logToConsole = true;
+
+    const pusher = new Pusher('c78e85722776effd2a18', {
+      cluster: 'us2',
+      forceTLS: true
+    });
+
+    const channel = pusher.subscribe('room-id');
+    channel.bind('new-user', (data) => {
+      this.getAllUsers()
+    });
+  }
+
+  private getAllUsers(): void {
+    this.userService.getAll().subscribe(
+      response => {
+        this.users = response.data
+      },
+      err => {
+        console.log("Erro");
+        this.users = []
+      }
+    )
   }
 
 }
