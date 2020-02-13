@@ -4,12 +4,15 @@ import { UserCreateComponent } from './user/user-create/user-create.component';
 import { QuestionCreateComponent } from './question/question-create/question-create.component';
 import { NotFoundComponent } from './shared/not-found/not-found.component';
 import { UserListComponent } from './user/user-list/user-list.component';
+import { QuestionShowComponent } from './question/question-show/question-show.component';
+import { AuthGuard } from './middleware/auth-guard.guard';
 
 
 const routes: Routes = [
   { path: 'create', component: QuestionCreateComponent },
   { path: 'question/:questionId', component: UserCreateComponent },
-  { path: 'question/:questionId/waiting', component: UserListComponent },
+  { path: 'question/:questionId/waiting', component: UserListComponent, canActivate: [AuthGuard] },
+  { path: 'game', component: QuestionShowComponent, canActivate: [AuthGuard] },
   { path: '**', component: NotFoundComponent }
 ];
 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 declare var Pusher: any;
 
@@ -16,7 +17,8 @@ export class UserCreateComponent implements OnInit {
   constructor(
     private userService: UserService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private authService: AuthService
   ) { }
 
   ngOnInit() { }
@@ -29,7 +31,7 @@ export class UserCreateComponent implements OnInit {
     }
 
     this.userService.create(body).subscribe(success => {
-      alert(success)
+      this.authService.setToken(success.data.id)
       this.router.navigate(['question', questionId, 'waiting'])
     }, error => { })
   }

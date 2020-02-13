@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 
 import { UserService } from 'src/app/services/user.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+
+
+
 
 declare var Pusher: any;
 
@@ -34,7 +38,7 @@ export class UserListComponent implements OnInit {
     'mdl-color--grey',
     'mdl-color--blue-grey'
   ]
-  constructor(private userService: UserService, private activatedRoute: ActivatedRoute) { }
+  constructor(private userService: UserService, private activatedRoute: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     this.initPusherObserver()
@@ -66,6 +70,25 @@ export class UserListComponent implements OnInit {
         this.users = []
       }
     )
+  }
+
+  copyLink() {
+    const HOST = window.location.origin
+    const selBox = document.createElement('textarea');
+    selBox.style.position = 'fixed';
+    selBox.style.left = '0';
+    selBox.style.top = '0';
+    selBox.style.opacity = '0';
+    selBox.value = `${HOST}/question/${this.activatedRoute.snapshot.params.questionId}`
+    document.body.appendChild(selBox);
+    selBox.focus();
+    selBox.select();
+    document.execCommand('copy');
+    document.body.removeChild(selBox);
+  }
+
+  startGame() {
+    this.router.navigate(['game'])
   }
 
 }

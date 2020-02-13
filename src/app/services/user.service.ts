@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { environment } from 'src/environments/environment';
 import { Response } from "./response";
+import { User } from './user';
 
 const URL = environment.URL_API
 const httpOptions = {
@@ -23,7 +24,7 @@ export class UserService {
   }
 
   create({username, questionId}) {
-    return this.http.post<Response<string>>(this.BASE_URL, { username, questionId })
+    return this.http.post<Response<User>>(this.BASE_URL, { username, questionId })
   }
 
 }
