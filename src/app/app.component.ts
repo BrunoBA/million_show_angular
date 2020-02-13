@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { HttpClient, HttpHandler } from '@angular/common/http';
+
+declare var Pusher: any;
 
 @Component({
   selector: 'app-root',
@@ -6,9 +9,25 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'millionShowAngular';
+  userName: string = 'Bruno'
 
-  ngOnInit () {
 
+
+  ngOnInit() {
+    Pusher.logToConsole = true;
+
+    var pusher = new Pusher('c78e85722776effd2a18', {
+      cluster: 'us2',
+      forceTLS: true
+    });
+
+    var channel = pusher.subscribe('room-id');
+    channel.bind('new-user', function (data) {
+      alert(JSON.stringify(data));
+    });
+  }
+
+  joinRoom(): void {
+    alert("Aaai papaai")
   }
 }

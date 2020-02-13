@@ -35,7 +35,8 @@
               "./node_modules/font-awesome/css/font-awesome.min.css"
             ],
             "scripts": [
-              "./node_modules/material-design-lite/material.min.js"
+              "./node_modules/material-design-lite/material.min.js",
+              "./node_modules/pusher-js/dist/web/pusher.min.js"
             ]
           },
           "configurations": {
