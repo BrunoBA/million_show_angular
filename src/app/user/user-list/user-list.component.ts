@@ -4,9 +4,6 @@ import { Location } from '@angular/common';
 import { UserService } from 'src/app/services/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
-
-
-
 declare var Pusher: any;
 
 @Component({
@@ -53,7 +50,8 @@ export class UserListComponent implements OnInit {
       forceTLS: true
     });
 
-    const channel = pusher.subscribe('room-id');
+    const questionId = this.activatedRoute.snapshot.params.questionId
+    const channel = pusher.subscribe(`room-${questionId.slice(0,4)}`);
     channel.bind('new-user', (data) => {
       this.getAllUsers()
     });
