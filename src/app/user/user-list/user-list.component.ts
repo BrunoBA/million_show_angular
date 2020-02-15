@@ -35,7 +35,11 @@ export class UserListComponent implements OnInit {
     'mdl-color--grey',
     'mdl-color--blue-grey'
   ]
-  constructor(private userService: UserService, private activatedRoute: ActivatedRoute, private router: Router) { }
+  constructor(
+    private userService: UserService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router
+  ) { }
 
   ngOnInit() {
     this.initPusherObserver()
@@ -51,7 +55,7 @@ export class UserListComponent implements OnInit {
     });
 
     const questionId = this.activatedRoute.snapshot.params.questionId
-    const channel = pusher.subscribe(`room-${questionId.slice(0,4)}`);
+    const channel = pusher.subscribe(`room-${questionId.slice(0, 4)}`);
     channel.bind('new-user', (data) => {
       this.getAllUsers()
     });
