@@ -47,7 +47,7 @@ export class UserListComponent implements OnInit {
   }
 
   private initPusherObserver(): void {
-    Pusher.logToConsole = true;
+    // Pusher.logToConsole = true;
 
     const pusher = new Pusher('c78e85722776effd2a18', {
       cluster: 'us2',
