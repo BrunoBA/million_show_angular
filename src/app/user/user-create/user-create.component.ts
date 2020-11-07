@@ -31,7 +31,8 @@ export class UserCreateComponent implements OnInit {
     }
 
     this.userService.create(body).subscribe(success => {
-      this.authService.setToken(success.data.id)
+      const token = success.data.id.toString();
+      this.authService.setToken(token)
       this.router.navigate(['question', questionId, 'waiting'])
     }, error => { })
   }
