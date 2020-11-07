@@ -20,7 +20,7 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   getAll(questionId: string) {
-    return this.http.get<Response<Array<string>>>(this.BASE_URL + '?questionId=' + questionId, httpOptions)
+    return this.http.get<Response<Array<User>>>(this.BASE_URL + '?questionId=' + questionId, httpOptions)
   }
 
   create({ username, questionId }) {
@@ -40,4 +40,7 @@ export class UserService {
     return this.http.delete<Response<boolean>>(this.BASE_URL + '/' + id, options)
   }
 
+  ready(userId: string, questionId: string) {
+    return this.http.post<Response<boolean>>(this.BASE_URL + '/' + userId + '/ready', { questionId })
+  }
 }

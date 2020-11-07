@@ -13,7 +13,7 @@ export class AuthService {
     return !!this.getToken();
   }
 
-  setToken(token): void {
+  setToken(token: string): void {
     window.localStorage.setItem(KEY, token);
   }
 
